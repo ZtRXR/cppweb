@@ -23,8 +23,5 @@
     <ClInclude Include="myweb.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="m_myweb.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

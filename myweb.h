@@ -1,8 +1,11 @@
-#pragma once
+ï»¿#pragma once
+#pragma execution_character_set("utf-8")  
+
 #include<iostream>
 #include<vector>
 #include<format>
 #include<map>
+#include<sstream>
 class ztWeb {
 private:
 	struct Header
@@ -15,7 +18,7 @@ private:
 	std::map<std::string, std::string> query;
 public:
 	std::string getQuery(std::string s) {
-		return query[s].size() ? query[s] : "ÎÞ";
+		return query[s].size() ? query[s] : "æ— ";
 	}
 
 public:
@@ -37,12 +40,36 @@ public:
 	void addBody(std::string mes) {
 		mess.push_back(mes);
 	}
+
 	ztWeb() {
 		std::string Query{getenv("QUERY_STRING")};
+		decodeUrl(Query);
 		std::map<std::string, std::string> queryMap;
 		m_to_query(Query);
 	}
 private:
+	void decodeUrl(std::string &encodedUrl) {
+		std::stringstream decoded;
+		for (size_t i{ 0 }; i < encodedUrl.size(); i++) {
+			if (encodedUrl[i] == '%') {
+				std::string encodedChar = encodedUrl.substr(i + 1, 2);
+				int charCode{ 0 };
+				std::stringstream ss;
+				ss << std::hex << encodedChar;
+				ss >> charCode;
+				decoded << (char)charCode;
+				i += 2;
+			}
+			else if (encodedUrl[i] == '+')
+			{
+				decoded << " ";
+			}
+			else {
+				decoded << encodedUrl[i];
+			}
+		}
+		encodedUrl = decoded.str();
+	}
 	void m_to_query(std::string& s) {
 		std::vector<std::string> v;
 		m_split(s, "&", v);
