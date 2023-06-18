@@ -14,8 +14,8 @@ int main() {
 <h2>your age is :<h3>{}</h3></h2>
 "hello"
 )",
-"Zengtudor",
-ZtWeb.query["age"]
+ZtWeb.getQuery("name"),
+ZtWeb.getQuery("age")
 ));
 
 	ZtWeb.send();

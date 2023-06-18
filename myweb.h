@@ -12,8 +12,11 @@ private:
 	};
 	std::vector<Header> headers;
 	std::vector<std::string> mess;
-public:
 	std::map<std::string, std::string> query;
+public:
+	std::string getQuery(std::string s) {
+		return query[s].size() ? query[s] : "нч";
+	}
 
 public:
 	void addHeader(std::string fir, std::string sec) {
