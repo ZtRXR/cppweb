@@ -11,12 +11,12 @@ int main() {
 
 <h1>Hello world!</h1>
 <h2>By {}</h2>
-<h2>your path is :<h3>{}</h3></h2>
+<h2>your age is :<h3>{}</h3></h2>
 "hello"
 )",
-	"Zengtudor",
-	getenv("QUERY_STRING")
-	));
+"Zengtudor",
+ZtWeb.query["age"]
+));
 
 	ZtWeb.send();
 }
